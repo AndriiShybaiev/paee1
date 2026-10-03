@@ -2,10 +2,25 @@ namespace paee1
 {
     public partial class principal : Form
     {
+        private enum Operacion
+        {
+            Suma,
+            Resta,
+            Producto,
+            Division
+        }
+
+        private int operando1, operando2, resultado;
+
+        private Operacion operacion;
+
         private string lang = "es";
         public principal()
         {
             InitializeComponent();
+            operando1 = 0;
+            operando2 = 0;
+            resultado = 0;
         }
 
         private void principal_Load(object sender, EventArgs e)
