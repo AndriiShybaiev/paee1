@@ -52,10 +52,10 @@
             btnEq = new Button();
             btnErase = new Button();
             pnlNumeros = new Panel();
+            btnComa = new Button();
             pnlOperadores = new Panel();
             pnlAcciones = new Panel();
             pnlDisplay = new Panel();
-            btnComa = new Button();
             menuStrip2.SuspendLayout();
             pnlNumeros.SuspendLayout();
             pnlOperadores.SuspendLayout();
@@ -120,7 +120,7 @@
             // menuAcercaDe
             // 
             menuAcercaDe.Name = "menuAcercaDe";
-            menuAcercaDe.Size = new Size(270, 34);
+            menuAcercaDe.Size = new Size(188, 34);
             menuAcercaDe.Text = "AcercaDe";
             menuAcercaDe.Click += menuAcercaDe_Click;
             // 
@@ -238,6 +238,7 @@
             btnPlus.TabIndex = 15;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = true;
+            btnPlus.Click += btnPlus_Click;
             // 
             // btnMinus
             // 
@@ -310,6 +311,16 @@
             pnlNumeros.TabIndex = 21;
             pnlNumeros.Paint += panel1_Paint;
             // 
+            // btnComa
+            // 
+            btnComa.Location = new Point(155, 213);
+            btnComa.Margin = new Padding(4);
+            btnComa.Name = "btnComa";
+            btnComa.Size = new Size(62, 62);
+            btnComa.TabIndex = 25;
+            btnComa.Text = ".";
+            btnComa.UseVisualStyleBackColor = true;
+            // 
             // pnlOperadores
             // 
             pnlOperadores.Controls.Add(btnDiv);
@@ -338,16 +349,6 @@
             pnlDisplay.Name = "pnlDisplay";
             pnlDisplay.Size = new Size(443, 36);
             pnlDisplay.TabIndex = 24;
-            // 
-            // btnComa
-            // 
-            btnComa.Location = new Point(155, 213);
-            btnComa.Margin = new Padding(4);
-            btnComa.Name = "btnComa";
-            btnComa.Size = new Size(62, 62);
-            btnComa.TabIndex = 25;
-            btnComa.Text = ".";
-            btnComa.UseVisualStyleBackColor = true;
             // 
             // principal
             // 

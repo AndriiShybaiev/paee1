@@ -113,7 +113,7 @@ namespace paee1
         {
             anyadirNumDisplay("8");
         }
-        
+
         private void btn9_Click(object sender, EventArgs e)
         {
             anyadirNumDisplay("9");
@@ -147,6 +147,73 @@ namespace paee1
         private void btn3_Click(object sender, EventArgs e)
         {
             anyadirNumDisplay("3");
+        }
+
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            anyadirNumDisplay("0");
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            operacion = Operacion.Suma;
+            pnlDisplay.Text = "0";
+        }
+
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            operacion = Operacion.Resta;
+            pnlDisplay.Text = "0";
+        }
+
+        private void btnMult_Click(object sender, EventArgs e)
+        {
+            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            operacion = Operacion.Producto;
+            pnlDisplay.Text = "0";
+        }
+
+        private void btnDiv_Click(object sender, EventArgs e)
+        {
+            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            operacion = Operacion.Division;
+            pnlDisplay.Text = "0";
+        }
+
+        private void btnEqual_Click(object sender, EventArgs e)
+        {
+            operando2 = Convert.ToInt32(pnlDisplay.Text);
+            switch (operacion)
+            {
+                case Operacion.Suma:
+                    resultado = operando1 + operando2;
+                    break;
+                case Operacion.Resta:
+                    resultado = operando1 - operando2;
+                    break;
+                case Operacion.Producto:
+                    resultado = operando1 * operando2;
+                    break;
+                case Operacion.Division:
+                    if (operando2 != 0)
+                        resultado = operando1 / operando2;
+                    else
+                        MessageBox.Show("Error: Division por cero");
+                    break;
+            }
+            pnlDisplay.Text = resultado.ToString();
+            operando1 = 0;
+            operando2 = 0;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text = "0";
+            operando1 = 0;
+            operando2 = 0;
+            resultado = 0;
         }
 
 
