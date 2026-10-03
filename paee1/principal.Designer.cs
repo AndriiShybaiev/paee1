@@ -55,7 +55,7 @@
             btnComa = new Button();
             pnlOperadores = new Panel();
             pnlAcciones = new Panel();
-            pnlDisplay = new Panel();
+            pnlDisplay = new Label();
             menuStrip2.SuspendLayout();
             pnlNumeros.SuspendLayout();
             pnlOperadores.SuspendLayout();
@@ -133,7 +133,7 @@
             btn1.TabIndex = 5;
             btn1.Text = "1";
             btn1.UseVisualStyleBackColor = true;
-            btn1.Click += button2_Click;
+            btn1.Click += btnNumero_Click;
             // 
             // btn2
             // 
@@ -144,6 +144,7 @@
             btn2.TabIndex = 6;
             btn2.Text = "2";
             btn2.UseVisualStyleBackColor = true;
+            btn2.Click += btnNumero_Click;
             // 
             // btn3
             // 
@@ -154,6 +155,7 @@
             btn3.TabIndex = 7;
             btn3.Text = "3";
             btn3.UseVisualStyleBackColor = true;
+            btn3.Click += btnNumero_Click;
             // 
             // btn6
             // 
@@ -164,7 +166,7 @@
             btn6.TabIndex = 10;
             btn6.Text = "6";
             btn6.UseVisualStyleBackColor = true;
-            btn6.Click += btn6_Click;
+            btn6.Click += btnNumero_Click;
             // 
             // btn5
             // 
@@ -175,7 +177,7 @@
             btn5.TabIndex = 9;
             btn5.Text = "5";
             btn5.UseVisualStyleBackColor = true;
-            btn5.Click += button6_Click;
+            btn5.Click += btnNumero_Click;
             // 
             // btn4
             // 
@@ -186,6 +188,7 @@
             btn4.TabIndex = 8;
             btn4.Text = "4";
             btn4.UseVisualStyleBackColor = true;
+            btn4.Click += btnNumero_Click;
             // 
             // btn9
             // 
@@ -196,7 +199,7 @@
             btn9.TabIndex = 13;
             btn9.Text = "9";
             btn9.UseVisualStyleBackColor = true;
-            btn9.Click += btn9_Click;
+            btn9.Click += btnNumero_Click;
             // 
             // btn8
             // 
@@ -207,6 +210,7 @@
             btn8.TabIndex = 12;
             btn8.Text = "8";
             btn8.UseVisualStyleBackColor = true;
+            btn8.Click += btnNumero_Click;
             // 
             // btn7
             // 
@@ -217,7 +221,7 @@
             btn7.TabIndex = 11;
             btn7.Text = "7";
             btn7.UseVisualStyleBackColor = true;
-            btn7.Click += btn7_Click;
+            btn7.Click += btnNumero_Click;
             // 
             // btn0
             // 
@@ -228,6 +232,7 @@
             btn0.TabIndex = 14;
             btn0.Text = "0";
             btn0.UseVisualStyleBackColor = true;
+            btn0.Click += btnNumero_Click;
             // 
             // btnPlus
             // 
@@ -344,11 +349,13 @@
             // pnlDisplay
             // 
             pnlDisplay.BackColor = SystemColors.ActiveCaption;
-            pnlDisplay.Font = new Font("Consolas", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pnlDisplay.AutoSize = false;
+            pnlDisplay.Font = new Font("Consolas", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             pnlDisplay.Location = new Point(0, 58);
             pnlDisplay.Name = "pnlDisplay";
             pnlDisplay.Size = new Size(443, 36);
             pnlDisplay.TabIndex = 24;
+            pnlDisplay.TextAlign = ContentAlignment.MiddleRight;
             // 
             // principal
             // 
@@ -407,7 +414,7 @@
         private Panel pnlOperadores;
         private Panel pnlAcciones;
         private ToolStripMenuItem menuAcercaDe;
-        private Panel pnlDisplay;
+        private Label pnlDisplay;
         private Button btnComa;
     }
 }

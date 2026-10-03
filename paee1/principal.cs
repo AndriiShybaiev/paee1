@@ -90,68 +90,12 @@ namespace paee1
 
         }
 
-        private void anyadirNumDisplay(string num)
+        private void btnNumero_Click(object sender, EventArgs e)
         {
-            string txt = pnlDisplay.Text + num;
-            int numero = 0;
-            try
+            if (sender is Button button)
             {
-                numero = Convert.ToInt32(txt);
-                pnlDisplay.Text = numero.ToString();
+                pnlDisplay.Text += button.Text;
             }
-            catch
-            {
-            }
-        }
-
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("7");
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("8");
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("9");
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("4");
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("5");
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("6");
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("1");
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("2");
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("3");
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            anyadirNumDisplay("0");
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -200,7 +144,7 @@ namespace paee1
                     if (operando2 != 0)
                         resultado = operando1 / operando2;
                     else
-                        MessageBox.Show("Error: Division por cero");
+                        MessageBox.Show("Error: Division por cero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
             pnlDisplay.Text = resultado.ToString();
