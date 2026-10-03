@@ -254,7 +254,7 @@
             btnMinus.TabIndex = 16;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = true;
-            btnMinus.Click += button13_Click;
+            btnMinus.Click += btnMinus_Click;
             // 
             // btnMult
             // 
@@ -265,7 +265,7 @@
             btnMult.TabIndex = 17;
             btnMult.Text = "X";
             btnMult.UseVisualStyleBackColor = true;
-            btnMult.Click += button14_Click;
+            btnMult.Click += btnMult_Click;
             // 
             // btnDiv
             // 
@@ -276,6 +276,7 @@
             btnDiv.TabIndex = 18;
             btnDiv.Text = "/";
             btnDiv.UseVisualStyleBackColor = true;
+            btnDiv.Click += btnDiv_Click;
             // 
             // btnEq
             // 
@@ -286,7 +287,7 @@
             btnEq.TabIndex = 19;
             btnEq.Text = "=";
             btnEq.UseVisualStyleBackColor = true;
-            btnEq.Click += button16_Click;
+            btnEq.Click += btnEqual_Click;
             // 
             // btnErase
             // 

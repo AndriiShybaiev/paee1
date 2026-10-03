@@ -18,6 +18,7 @@ namespace paee1
         public principal()
         {
             InitializeComponent();
+            pnlDisplay.Text = "0";
             operando1 = 0;
             operando2 = 0;
             resultado = 0;
@@ -94,7 +95,14 @@ namespace paee1
         {
             if (sender is Button button)
             {
-                pnlDisplay.Text += button.Text;
+                if (pnlDisplay.Text == "0")
+                {
+                    pnlDisplay.Text = button.Text;
+                }
+                else
+                {
+                    pnlDisplay.Text += button.Text;
+                }
             }
         }
 
