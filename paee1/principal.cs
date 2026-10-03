@@ -77,7 +77,16 @@ namespace paee1
 
         private void anyadirNumDisplay(string num)
         {
-            pnlDisplay.Text += num;
+            string txt = pnlDisplay.Text + num;
+            int numero = 0;
+            try
+            {
+                numero = Convert.ToInt32(txt);
+                pnlDisplay.Text = numero.ToString();
+            }
+            catch
+            {
+            }
         }
 
         private void btn7_Click(object sender, EventArgs e)
