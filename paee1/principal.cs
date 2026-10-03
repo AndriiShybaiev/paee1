@@ -71,7 +71,16 @@
 
         private void menuSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro de que desea salir?",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void menuAyuda_Click(object sender, EventArgs e)
@@ -105,6 +114,21 @@
                     pnlDisplay.Text += button.Text;
                 }
                 ActualizarEstadoBotonIgual();
+            }
+        }
+
+        private void btnPlusMin_Click(object sender, EventArgs e)
+        {
+            if (!TryObtenerValorDisplay(out int valor)) return;
+
+            try
+            {
+                pnlDisplay.Text = checked(-valor).ToString();
+                ActualizarEstadoBotonIgual();
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("No se puede cambiar el signo: el valor excede el rango permitido.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

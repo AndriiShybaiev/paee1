@@ -50,8 +50,9 @@
             btnMult = new Button();
             btnDiv = new Button();
             btnEq = new Button();
-            btnErase = new Button();
+            btnClear = new Button();
             pnlNumeros = new Panel();
+            btnPlusMin = new Button();
             btnComa = new Button();
             pnlOperadores = new Panel();
             pnlAcciones = new Panel();
@@ -289,18 +290,20 @@
             btnEq.UseVisualStyleBackColor = true;
             btnEq.Click += btnEqual_Click;
             // 
-            // btnErase
+            // btnClear
             // 
-            btnErase.Location = new Point(13, 73);
-            btnErase.Margin = new Padding(4);
-            btnErase.Name = "btnErase";
-            btnErase.Size = new Size(62, 62);
-            btnErase.TabIndex = 20;
-            btnErase.Text = "B";
-            btnErase.UseVisualStyleBackColor = true;
+            btnClear.Location = new Point(13, 73);
+            btnClear.Margin = new Padding(4);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(62, 62);
+            btnClear.TabIndex = 20;
+            btnClear.Text = "B";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // pnlNumeros
             // 
+            pnlNumeros.Controls.Add(btnPlusMin);
             pnlNumeros.Controls.Add(btnComa);
             pnlNumeros.Controls.Add(btn1);
             pnlNumeros.Controls.Add(btn3);
@@ -316,6 +319,17 @@
             pnlNumeros.Size = new Size(233, 293);
             pnlNumeros.TabIndex = 21;
             pnlNumeros.Paint += panel1_Paint;
+            // 
+            // btnPlusMin
+            // 
+            btnPlusMin.Location = new Point(15, 213);
+            btnPlusMin.Margin = new Padding(4);
+            btnPlusMin.Name = "btnPlusMin";
+            btnPlusMin.Size = new Size(62, 62);
+            btnPlusMin.TabIndex = 26;
+            btnPlusMin.Text = "+/-";
+            btnPlusMin.UseVisualStyleBackColor = true;
+            btnPlusMin.Click += btnPlusMin_Click;
             // 
             // btnComa
             // 
@@ -341,7 +355,7 @@
             // pnlAcciones
             // 
             pnlAcciones.Controls.Add(btnEq);
-            pnlAcciones.Controls.Add(btnErase);
+            pnlAcciones.Controls.Add(btnClear);
             pnlAcciones.Location = new Point(350, 97);
             pnlAcciones.Name = "pnlAcciones";
             pnlAcciones.Size = new Size(93, 293);
@@ -350,7 +364,6 @@
             // pnlDisplay
             // 
             pnlDisplay.BackColor = SystemColors.ActiveCaption;
-            pnlDisplay.AutoSize = false;
             pnlDisplay.Font = new Font("Consolas", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             pnlDisplay.Location = new Point(0, 58);
             pnlDisplay.Name = "pnlDisplay";
@@ -410,12 +423,13 @@
         private Button btnMult;
         private Button btnDiv;
         private Button btnEq;
-        private Button btnErase;
+        private Button btnClear;
         private Panel pnlNumeros;
         private Panel pnlOperadores;
         private Panel pnlAcciones;
         private ToolStripMenuItem menuAcercaDe;
         private Label pnlDisplay;
         private Button btnComa;
+        private Button btnPlusMin;
     }
 }
