@@ -22,6 +22,7 @@ namespace paee1
             operando1 = 0;
             operando2 = 0;
             resultado = 0;
+            ActualizarEstadoBotonIgual();
         }
 
         private void principal_Load(object sender, EventArgs e)
@@ -103,6 +104,7 @@ namespace paee1
                 {
                     pnlDisplay.Text += button.Text;
                 }
+                ActualizarEstadoBotonIgual();
             }
         }
 
@@ -111,6 +113,7 @@ namespace paee1
             operando1 = Convert.ToInt32(pnlDisplay.Text);
             operacion = Operacion.Suma;
             pnlDisplay.Text = "0";
+            ActualizarEstadoBotonIgual();
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
@@ -118,6 +121,7 @@ namespace paee1
             operando1 = Convert.ToInt32(pnlDisplay.Text);
             operacion = Operacion.Resta;
             pnlDisplay.Text = "0";
+            ActualizarEstadoBotonIgual();
         }
 
         private void btnMult_Click(object sender, EventArgs e)
@@ -125,6 +129,7 @@ namespace paee1
             operando1 = Convert.ToInt32(pnlDisplay.Text);
             operacion = Operacion.Producto;
             pnlDisplay.Text = "0";
+            ActualizarEstadoBotonIgual();
         }
 
         private void btnDiv_Click(object sender, EventArgs e)
@@ -132,6 +137,7 @@ namespace paee1
             operando1 = Convert.ToInt32(pnlDisplay.Text);
             operacion = Operacion.Division;
             pnlDisplay.Text = "0";
+            ActualizarEstadoBotonIgual();
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -158,6 +164,12 @@ namespace paee1
             pnlDisplay.Text = resultado.ToString();
             operando1 = 0;
             operando2 = 0;
+            ActualizarEstadoBotonIgual();
+        }
+
+        private void ActualizarEstadoBotonIgual()
+        {
+            btnEq.Enabled = operacion != Operacion.Division || pnlDisplay.Text != "0";
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -166,6 +178,7 @@ namespace paee1
             operando1 = 0;
             operando2 = 0;
             resultado = 0;
+            ActualizarEstadoBotonIgual();
         }
 
 
