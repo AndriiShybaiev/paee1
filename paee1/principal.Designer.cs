@@ -57,6 +57,7 @@
             pnlOperadores = new Panel();
             pnlAcciones = new Panel();
             pnlDisplay = new Label();
+            lblOperacion = new Label();
             menuStrip2.SuspendLayout();
             pnlNumeros.SuspendLayout();
             pnlOperadores.SuspendLayout();
@@ -372,12 +373,24 @@
             pnlDisplay.TabIndex = 24;
             pnlDisplay.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // lblOperacion
+            // 
+            lblOperacion.AutoSize = false;
+            lblOperacion.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOperacion.ForeColor = SystemColors.ControlDarkDark;
+            lblOperacion.Location = new Point(0, 34);
+            lblOperacion.Name = "lblOperacion";
+            lblOperacion.Size = new Size(443, 22);
+            lblOperacion.TabIndex = 27;
+            lblOperacion.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // principal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 691);
             Controls.Add(pnlDisplay);
+            Controls.Add(lblOperacion);
             Controls.Add(btn0);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -432,5 +445,6 @@
         private Label pnlDisplay;
         private Button btnComa;
         private Button btnPlusMin;
+        private Label lblOperacion;
     }
 }

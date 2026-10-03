@@ -15,6 +15,7 @@ namespace paee1
         private double operando1, operando2, resultado;
 
         private Operacion operacion;
+        private bool operacionPendiente;
 
         private string lang = "es";
         public principal()
@@ -116,6 +117,7 @@ namespace paee1
                     pnlDisplay.Text += button.Text;
                 }
                 ActualizarEstadoBotonIgual();
+                ActualizarIndicadorOperacion();
             }
         }
 
@@ -125,6 +127,7 @@ namespace paee1
 
             pnlDisplay.Text += ".";
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
         }
 
         private void btnPlusMin_Click(object sender, EventArgs e)
@@ -133,42 +136,75 @@ namespace paee1
 
             pnlDisplay.Text = (-valor).ToString(CultureInfo.InvariantCulture);
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Suma;
+            operacionPendiente = true;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
             if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Resta;
+            operacionPendiente = true;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
         }
 
         private void btnMult_Click(object sender, EventArgs e)
         {
             if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Producto;
+            operacionPendiente = true;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
         }
 
         private void btnDiv_Click(object sender, EventArgs e)
         {
             if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Division;
+            operacionPendiente = true;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
+        }
+
+        private void ActualizarIndicadorOperacion()
+        {
+            if (!operacionPendiente)
+            {
+                lblOperacion.Text = string.Empty;
+                return;
+            }
+
+            lblOperacion.Text = $"{operando1.ToString(CultureInfo.InvariantCulture)} {ObtenerSimboloOperacion()} {pnlDisplay.Text}";
+        }
+
+        private string ObtenerSimboloOperacion()
+        {
+            return operacion switch
+            {
+                Operacion.Suma => "+",
+                Operacion.Resta => "−",
+                Operacion.Producto => "×",
+                Operacion.Division => "÷",
+                _ => string.Empty
+            };
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            if (!operacionPendiente) return;
             if (!TryObtenerValorDisplay(out operando2)) return;
 
             switch (operacion)
@@ -199,8 +235,10 @@ namespace paee1
             }
 
             pnlDisplay.Text = resultado.ToString(CultureInfo.InvariantCulture);
+            lblOperacion.Text = $"{operando1.ToString(CultureInfo.InvariantCulture)} {ObtenerSimboloOperacion()} {operando2.ToString(CultureInfo.InvariantCulture)} = {pnlDisplay.Text}";
             operando1 = 0;
             operando2 = 0;
+            operacionPendiente = false;
             ActualizarEstadoBotonIgual();
         }
 
@@ -221,7 +259,7 @@ namespace paee1
 
         private void ActualizarEstadoBotonIgual()
         {
-            btnEq.Enabled = operacion != Operacion.Division ||
+            btnEq.Enabled = !operacionPendiente ||
                 (double.TryParse(
                     pnlDisplay.Text,
                     NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
@@ -235,6 +273,8 @@ namespace paee1
             operando1 = 0;
             operando2 = 0;
             resultado = 0;
+            operacionPendiente = false;
+            lblOperacion.Text = string.Empty;
             ActualizarEstadoBotonIgual();
         }
 
