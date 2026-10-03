@@ -35,7 +35,6 @@
             menuSalir = new ToolStripMenuItem();
             menuAyuda = new ToolStripMenuItem();
             menuAcercaDe = new ToolStripMenuItem();
-            textBox1 = new TextBox();
             btn1 = new Button();
             btn2 = new Button();
             btn3 = new Button();
@@ -52,12 +51,15 @@
             btnDiv = new Button();
             btnEq = new Button();
             btnErase = new Button();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
+            pnlNumeros = new Panel();
+            pnlOperadores = new Panel();
+            pnlAcciones = new Panel();
+            pnlDisplay = new Panel();
+            btnComa = new Button();
             menuStrip2.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
+            pnlNumeros.SuspendLayout();
+            pnlOperadores.SuspendLayout();
+            pnlAcciones.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -122,17 +124,9 @@
             menuAcercaDe.Text = "AcercaDe";
             menuAcercaDe.Click += menuAcercaDe_Click;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(0, 59);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(443, 31);
-            textBox1.TabIndex = 4;
-            // 
             // btn1
             // 
-            btn1.Location = new Point(15, 100);
+            btn1.Location = new Point(15, 143);
             btn1.Margin = new Padding(4);
             btn1.Name = "btn1";
             btn1.Size = new Size(62, 62);
@@ -143,7 +137,7 @@
             // 
             // btn2
             // 
-            btn2.Location = new Point(85, 100);
+            btn2.Location = new Point(85, 143);
             btn2.Margin = new Padding(4);
             btn2.Name = "btn2";
             btn2.Size = new Size(62, 62);
@@ -153,7 +147,7 @@
             // 
             // btn3
             // 
-            btn3.Location = new Point(155, 100);
+            btn3.Location = new Point(155, 143);
             btn3.Margin = new Padding(4);
             btn3.Name = "btn3";
             btn3.Size = new Size(62, 62);
@@ -163,17 +157,18 @@
             // 
             // btn6
             // 
-            btn6.Location = new Point(155, 170);
+            btn6.Location = new Point(155, 73);
             btn6.Margin = new Padding(4);
             btn6.Name = "btn6";
             btn6.Size = new Size(62, 62);
             btn6.TabIndex = 10;
             btn6.Text = "6";
             btn6.UseVisualStyleBackColor = true;
+            btn6.Click += btn6_Click;
             // 
             // btn5
             // 
-            btn5.Location = new Point(85, 170);
+            btn5.Location = new Point(85, 73);
             btn5.Margin = new Padding(4);
             btn5.Name = "btn5";
             btn5.Size = new Size(62, 62);
@@ -184,7 +179,7 @@
             // 
             // btn4
             // 
-            btn4.Location = new Point(15, 170);
+            btn4.Location = new Point(15, 73);
             btn4.Margin = new Padding(4);
             btn4.Name = "btn4";
             btn4.Size = new Size(62, 62);
@@ -194,17 +189,18 @@
             // 
             // btn9
             // 
-            btn9.Location = new Point(155, 240);
+            btn9.Location = new Point(155, 3);
             btn9.Margin = new Padding(4);
             btn9.Name = "btn9";
             btn9.Size = new Size(62, 62);
             btn9.TabIndex = 13;
             btn9.Text = "9";
             btn9.UseVisualStyleBackColor = true;
+            btn9.Click += btn9_Click;
             // 
             // btn8
             // 
-            btn8.Location = new Point(85, 240);
+            btn8.Location = new Point(85, 3);
             btn8.Margin = new Padding(4);
             btn8.Name = "btn8";
             btn8.Size = new Size(62, 62);
@@ -214,13 +210,14 @@
             // 
             // btn7
             // 
-            btn7.Location = new Point(15, 240);
+            btn7.Location = new Point(15, 3);
             btn7.Margin = new Padding(4);
             btn7.Name = "btn7";
             btn7.Size = new Size(62, 62);
             btn7.TabIndex = 11;
             btn7.Text = "7";
             btn7.UseVisualStyleBackColor = true;
+            btn7.Click += btn7_Click;
             // 
             // btn0
             // 
@@ -234,7 +231,7 @@
             // 
             // btnPlus
             // 
-            btnPlus.Location = new Point(21, 3);
+            btnPlus.Location = new Point(21, 213);
             btnPlus.Margin = new Padding(4);
             btnPlus.Name = "btnPlus";
             btnPlus.Size = new Size(62, 62);
@@ -244,7 +241,7 @@
             // 
             // btnMinus
             // 
-            btnMinus.Location = new Point(21, 73);
+            btnMinus.Location = new Point(21, 143);
             btnMinus.Margin = new Padding(4);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(62, 62);
@@ -255,7 +252,7 @@
             // 
             // btnMult
             // 
-            btnMult.Location = new Point(21, 143);
+            btnMult.Location = new Point(21, 73);
             btnMult.Margin = new Padding(4);
             btnMult.Name = "btnMult";
             btnMult.Size = new Size(62, 62);
@@ -266,7 +263,7 @@
             // 
             // btnDiv
             // 
-            btnDiv.Location = new Point(21, 213);
+            btnDiv.Location = new Point(21, 3);
             btnDiv.Margin = new Padding(4);
             btnDiv.Name = "btnDiv";
             btnDiv.Size = new Size(62, 62);
@@ -295,55 +292,76 @@
             btnErase.Text = "B";
             btnErase.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // pnlNumeros
             // 
-            panel1.Location = new Point(0, 97);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(233, 293);
-            panel1.TabIndex = 21;
+            pnlNumeros.Controls.Add(btnComa);
+            pnlNumeros.Controls.Add(btn1);
+            pnlNumeros.Controls.Add(btn3);
+            pnlNumeros.Controls.Add(btn2);
+            pnlNumeros.Controls.Add(btn9);
+            pnlNumeros.Controls.Add(btn4);
+            pnlNumeros.Controls.Add(btn8);
+            pnlNumeros.Controls.Add(btn5);
+            pnlNumeros.Controls.Add(btn7);
+            pnlNumeros.Controls.Add(btn6);
+            pnlNumeros.Location = new Point(0, 97);
+            pnlNumeros.Name = "pnlNumeros";
+            pnlNumeros.Size = new Size(233, 293);
+            pnlNumeros.TabIndex = 21;
+            pnlNumeros.Paint += panel1_Paint;
             // 
-            // panel2
+            // pnlOperadores
             // 
-            panel2.Controls.Add(btnDiv);
-            panel2.Controls.Add(btnMult);
-            panel2.Controls.Add(btnMinus);
-            panel2.Controls.Add(btnPlus);
-            panel2.Location = new Point(239, 97);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(105, 293);
-            panel2.TabIndex = 22;
+            pnlOperadores.Controls.Add(btnDiv);
+            pnlOperadores.Controls.Add(btnMult);
+            pnlOperadores.Controls.Add(btnMinus);
+            pnlOperadores.Controls.Add(btnPlus);
+            pnlOperadores.Location = new Point(239, 97);
+            pnlOperadores.Name = "pnlOperadores";
+            pnlOperadores.Size = new Size(105, 293);
+            pnlOperadores.TabIndex = 22;
             // 
-            // panel3
+            // pnlAcciones
             // 
-            panel3.Controls.Add(btnEq);
-            panel3.Controls.Add(btnErase);
-            panel3.Location = new Point(350, 97);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(93, 293);
-            panel3.TabIndex = 23;
+            pnlAcciones.Controls.Add(btnEq);
+            pnlAcciones.Controls.Add(btnErase);
+            pnlAcciones.Location = new Point(350, 97);
+            pnlAcciones.Name = "pnlAcciones";
+            pnlAcciones.Size = new Size(93, 293);
+            pnlAcciones.TabIndex = 23;
+            // 
+            // pnlDisplay
+            // 
+            pnlDisplay.BackColor = SystemColors.ActiveCaption;
+            pnlDisplay.Font = new Font("Consolas", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pnlDisplay.Location = new Point(0, 58);
+            pnlDisplay.Name = "pnlDisplay";
+            pnlDisplay.Size = new Size(443, 36);
+            pnlDisplay.TabIndex = 24;
+            // 
+            // btnComa
+            // 
+            btnComa.Location = new Point(155, 213);
+            btnComa.Margin = new Padding(4);
+            btnComa.Name = "btnComa";
+            btnComa.Size = new Size(62, 62);
+            btnComa.TabIndex = 25;
+            btnComa.Text = ".";
+            btnComa.UseVisualStyleBackColor = true;
             // 
             // principal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 691);
+            Controls.Add(pnlDisplay);
             Controls.Add(btn0);
-            Controls.Add(btn9);
-            Controls.Add(btn8);
-            Controls.Add(btn7);
-            Controls.Add(btn6);
-            Controls.Add(btn5);
-            Controls.Add(btn4);
-            Controls.Add(btn3);
-            Controls.Add(btn2);
-            Controls.Add(btn1);
-            Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(menuStrip2);
-            Controls.Add(panel1);
-            Controls.Add(panel2);
-            Controls.Add(panel3);
+            Controls.Add(pnlNumeros);
+            Controls.Add(pnlOperadores);
+            Controls.Add(pnlAcciones);
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "principal";
@@ -351,8 +369,9 @@
             Load += principal_Load;
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
+            pnlNumeros.ResumeLayout(false);
+            pnlOperadores.ResumeLayout(false);
+            pnlAcciones.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -367,7 +386,6 @@
         private ToolStripMenuItem salirToolStripMenuItem;
         private ToolStripMenuItem menuAyuda;
         private ToolStripMenuItem menuSalir;
-        private TextBox textBox1;
         private Button btn1;
         private Button btn2;
         private Button btn3;
@@ -384,9 +402,11 @@
         private Button btnDiv;
         private Button btnEq;
         private Button btnErase;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
+        private Panel pnlNumeros;
+        private Panel pnlOperadores;
+        private Panel pnlAcciones;
         private ToolStripMenuItem menuAcercaDe;
+        private Panel pnlDisplay;
+        private Button btnComa;
     }
 }

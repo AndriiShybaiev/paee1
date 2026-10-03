@@ -70,5 +70,56 @@ namespace paee1
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn7_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "7";
+        }
+
+        private void btn8_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "8";
+        }
+        
+        private void btn9_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "9";
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "4";
+        }
+
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "5";
+        }
+
+        private void btn6_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "6";
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "1";
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "2";
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            pnlDisplay.Text += "3";
+        }
+
+
     }
 }
