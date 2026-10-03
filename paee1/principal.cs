@@ -36,5 +36,39 @@ namespace paee1
         {
 
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void menuAyuda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuAcercaDe_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Autor: Andrii Shybaiev \nVersion: 0.0.1",
+                "Acerca de: Calculadora",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
     }
 }
