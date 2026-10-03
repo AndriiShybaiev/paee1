@@ -1,4 +1,4 @@
-namespace paee1
+﻿namespace paee1
 {
     public partial class principal : Form
     {
@@ -110,7 +110,7 @@ namespace paee1
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Suma;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
@@ -118,7 +118,7 @@ namespace paee1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Resta;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
@@ -126,7 +126,7 @@ namespace paee1
 
         private void btnMult_Click(object sender, EventArgs e)
         {
-            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Producto;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
@@ -134,7 +134,7 @@ namespace paee1
 
         private void btnDiv_Click(object sender, EventArgs e)
         {
-            operando1 = Convert.ToInt32(pnlDisplay.Text);
+            if (!TryObtenerValorDisplay(out operando1)) return;
             operacion = Operacion.Division;
             pnlDisplay.Text = "0";
             ActualizarEstadoBotonIgual();
@@ -142,29 +142,55 @@ namespace paee1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            operando2 = Convert.ToInt32(pnlDisplay.Text);
-            switch (operacion)
+            if (!TryObtenerValorDisplay(out operando2)) return;
+
+            try
             {
-                case Operacion.Suma:
-                    resultado = operando1 + operando2;
-                    break;
-                case Operacion.Resta:
-                    resultado = operando1 - operando2;
-                    break;
-                case Operacion.Producto:
-                    resultado = operando1 * operando2;
-                    break;
-                case Operacion.Division:
-                    if (operando2 != 0)
-                        resultado = operando1 / operando2;
-                    else
-                        MessageBox.Show("Error: Division por cero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
+                checked
+                {
+                    switch (operacion)
+                    {
+                        case Operacion.Suma:
+                            resultado = operando1 + operando2;
+                            break;
+                        case Operacion.Resta:
+                            resultado = operando1 - operando2;
+                            break;
+                        case Operacion.Producto:
+                            resultado = operando1 * operando2;
+                            break;
+                        case Operacion.Division:
+                            if (operando2 == 0)
+                            {
+                                MessageBox.Show("Error: no se puede dividir entre cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            resultado = operando1 / operando2;
+                            break;
+                    }
+                }
             }
+            catch (OverflowException)
+            {
+                MessageBox.Show("La operación ha causado un desbordamiento.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             pnlDisplay.Text = resultado.ToString();
             operando1 = 0;
             operando2 = 0;
             ActualizarEstadoBotonIgual();
+        }
+
+        private bool TryObtenerValorDisplay(out int valor)
+        {
+            if (int.TryParse(pnlDisplay.Text, out valor))
+            {
+                return true;
+            }
+
+            MessageBox.Show("Error: el número excede el rango permitido.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
         }
 
         private void ActualizarEstadoBotonIgual()
