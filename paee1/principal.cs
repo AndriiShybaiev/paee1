@@ -190,6 +190,31 @@ namespace paee1
             ActualizarIndicadorOperacion();
         }
 
+        private void btnSqrt_Click(object sender, EventArgs e)
+        {
+            if (!TryObtenerValorDisplay(out double valor)) return;
+
+            if (valor < 0)
+            {
+                MessageBox.Show("No se puede calcular la raíz cuadrada de un número negativo.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            resultado = Math.Sqrt(valor);
+            pnlDisplay.Text = resultado.ToString(CultureInfo.InvariantCulture);
+
+            if (operacionPendiente)
+            {
+                ActualizarIndicadorOperacion();
+            }
+            else
+            {
+                lblOperacion.Text = $"√({valor.ToString(CultureInfo.InvariantCulture)}) = {pnlDisplay.Text}";
+            }
+
+            ActualizarEstadoBotonIgual();
+        }
+
         private void ActualizarIndicadorOperacion()
         {
             if (!operacionPendiente)

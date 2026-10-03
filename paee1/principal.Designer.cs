@@ -55,10 +55,11 @@
             btnPlusMin = new Button();
             btnComa = new Button();
             pnlOperadores = new Panel();
+            btnPotencia = new Button();
             pnlAcciones = new Panel();
             pnlDisplay = new Label();
             lblOperacion = new Label();
-            btnPotencia = new Button();
+            btnSqrt = new Button();
             menuStrip2.SuspendLayout();
             pnlNumeros.SuspendLayout();
             pnlOperadores.SuspendLayout();
@@ -346,6 +347,7 @@
             // 
             // pnlOperadores
             // 
+            pnlOperadores.Controls.Add(btnSqrt);
             pnlOperadores.Controls.Add(btnPotencia);
             pnlOperadores.Controls.Add(btnDiv);
             pnlOperadores.Controls.Add(btnMult);
@@ -353,8 +355,19 @@
             pnlOperadores.Controls.Add(btnPlus);
             pnlOperadores.Location = new Point(239, 97);
             pnlOperadores.Name = "pnlOperadores";
-            pnlOperadores.Size = new Size(105, 382);
+            pnlOperadores.Size = new Size(105, 430);
             pnlOperadores.TabIndex = 22;
+            // 
+            // btnPotencia
+            // 
+            btnPotencia.Location = new Point(21, 283);
+            btnPotencia.Margin = new Padding(4);
+            btnPotencia.Name = "btnPotencia";
+            btnPotencia.Size = new Size(62, 62);
+            btnPotencia.TabIndex = 19;
+            btnPotencia.Text = "^";
+            btnPotencia.UseVisualStyleBackColor = true;
+            btnPotencia.Click += btnPotencia_Click;
             // 
             // pnlAcciones
             // 
@@ -385,16 +398,16 @@
             lblOperacion.TabIndex = 27;
             lblOperacion.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnPotencia
+            // btnSqrt
             // 
-            btnPotencia.Location = new Point(21, 283);
-            btnPotencia.Margin = new Padding(4);
-            btnPotencia.Name = "btnPotencia";
-            btnPotencia.Size = new Size(62, 62);
-            btnPotencia.TabIndex = 19;
-            btnPotencia.Text = "^";
-            btnPotencia.UseVisualStyleBackColor = true;
-            btnPotencia.Click += btnPotencia_Click;
+            btnSqrt.Location = new Point(21, 353);
+            btnSqrt.Margin = new Padding(4);
+            btnSqrt.Name = "btnSqrt";
+            btnSqrt.Size = new Size(62, 62);
+            btnSqrt.TabIndex = 28;
+            btnSqrt.Text = "Sqrt";
+            btnSqrt.UseVisualStyleBackColor = true;
+            btnSqrt.Click += btnSqrt_Click;
             // 
             // principal
             // 
@@ -459,5 +472,6 @@
         private Button btnPlusMin;
         private Label lblOperacion;
         private Button btnPotencia;
+        private Button btnSqrt;
     }
 }
