@@ -340,6 +340,7 @@
             btnComa.TabIndex = 25;
             btnComa.Text = ".";
             btnComa.UseVisualStyleBackColor = true;
+            btnComa.Click += btnComa_Click;
             // 
             // pnlOperadores
             // 

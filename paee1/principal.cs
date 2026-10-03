@@ -1,4 +1,6 @@
-﻿namespace paee1
+﻿using System.Globalization;
+
+namespace paee1
 {
     public partial class principal : Form
     {
@@ -10,7 +12,7 @@
             Division
         }
 
-        private int operando1, operando2, resultado;
+        private decimal operando1, operando2, resultado;
 
         private Operacion operacion;
 
@@ -117,13 +119,21 @@
             }
         }
 
+        private void btnComa_Click(object sender, EventArgs e)
+        {
+            if (pnlDisplay.Text.Contains('.')) return;
+
+            pnlDisplay.Text += ".";
+            ActualizarEstadoBotonIgual();
+        }
+
         private void btnPlusMin_Click(object sender, EventArgs e)
         {
-            if (!TryObtenerValorDisplay(out int valor)) return;
+            if (!TryObtenerValorDisplay(out decimal valor)) return;
 
             try
             {
-                pnlDisplay.Text = checked(-valor).ToString();
+                pnlDisplay.Text = checked(-valor).ToString(CultureInfo.InvariantCulture);
                 ActualizarEstadoBotonIgual();
             }
             catch (OverflowException)
@@ -200,15 +210,19 @@
                 return;
             }
 
-            pnlDisplay.Text = resultado.ToString();
+            pnlDisplay.Text = resultado.ToString(CultureInfo.InvariantCulture);
             operando1 = 0;
             operando2 = 0;
             ActualizarEstadoBotonIgual();
         }
 
-        private bool TryObtenerValorDisplay(out int valor)
+        private bool TryObtenerValorDisplay(out decimal valor)
         {
-            if (int.TryParse(pnlDisplay.Text, out valor))
+            if (decimal.TryParse(
+                pnlDisplay.Text,
+                NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
+                CultureInfo.InvariantCulture,
+                out valor))
             {
                 return true;
             }
@@ -219,7 +233,12 @@
 
         private void ActualizarEstadoBotonIgual()
         {
-            btnEq.Enabled = operacion != Operacion.Division || pnlDisplay.Text != "0";
+            btnEq.Enabled = operacion != Operacion.Division ||
+                (decimal.TryParse(
+                    pnlDisplay.Text,
+                    NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
+                    CultureInfo.InvariantCulture,
+                    out decimal segundoOperando) && segundoOperando != 0);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
