@@ -12,7 +12,7 @@ namespace paee1
             Division
         }
 
-        private decimal operando1, operando2, resultado;
+        private double operando1, operando2, resultado;
 
         private Operacion operacion;
 
@@ -129,17 +129,10 @@ namespace paee1
 
         private void btnPlusMin_Click(object sender, EventArgs e)
         {
-            if (!TryObtenerValorDisplay(out decimal valor)) return;
+            if (!TryObtenerValorDisplay(out double valor)) return;
 
-            try
-            {
-                pnlDisplay.Text = checked(-valor).ToString(CultureInfo.InvariantCulture);
-                ActualizarEstadoBotonIgual();
-            }
-            catch (OverflowException)
-            {
-                MessageBox.Show("No se puede cambiar el signo: el valor excede el rango permitido.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            pnlDisplay.Text = (-valor).ToString(CultureInfo.InvariantCulture);
+            ActualizarEstadoBotonIgual();
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
@@ -178,35 +171,30 @@ namespace paee1
         {
             if (!TryObtenerValorDisplay(out operando2)) return;
 
-            try
+            switch (operacion)
             {
-                checked
-                {
-                    switch (operacion)
+                case Operacion.Suma:
+                    resultado = operando1 + operando2;
+                    break;
+                case Operacion.Resta:
+                    resultado = operando1 - operando2;
+                    break;
+                case Operacion.Producto:
+                    resultado = operando1 * operando2;
+                    break;
+                case Operacion.Division:
+                    if (operando2 == 0)
                     {
-                        case Operacion.Suma:
-                            resultado = operando1 + operando2;
-                            break;
-                        case Operacion.Resta:
-                            resultado = operando1 - operando2;
-                            break;
-                        case Operacion.Producto:
-                            resultado = operando1 * operando2;
-                            break;
-                        case Operacion.Division:
-                            if (operando2 == 0)
-                            {
-                                MessageBox.Show("Error: no se puede dividir entre cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                            resultado = operando1 / operando2;
-                            break;
+                        MessageBox.Show("Error: no se puede dividir entre cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                }
+                    resultado = operando1 / operando2;
+                    break;
             }
-            catch (OverflowException)
+
+            if (!double.IsFinite(resultado))
             {
-                MessageBox.Show("La operación ha causado un desbordamiento.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La operación excede el rango permitido.", "Desbordamiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -216,13 +204,13 @@ namespace paee1
             ActualizarEstadoBotonIgual();
         }
 
-        private bool TryObtenerValorDisplay(out decimal valor)
+        private bool TryObtenerValorDisplay(out double valor)
         {
-            if (decimal.TryParse(
+            if (double.TryParse(
                 pnlDisplay.Text,
                 NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
                 CultureInfo.InvariantCulture,
-                out valor))
+                out valor) && double.IsFinite(valor))
             {
                 return true;
             }
@@ -234,11 +222,11 @@ namespace paee1
         private void ActualizarEstadoBotonIgual()
         {
             btnEq.Enabled = operacion != Operacion.Division ||
-                (decimal.TryParse(
+                (double.TryParse(
                     pnlDisplay.Text,
                     NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
                     CultureInfo.InvariantCulture,
-                    out decimal segundoOperando) && segundoOperando != 0);
+                    out double segundoOperando) && double.IsFinite(segundoOperando) && segundoOperando != 0);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
