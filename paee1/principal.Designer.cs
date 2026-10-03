@@ -58,6 +58,7 @@
             pnlAcciones = new Panel();
             pnlDisplay = new Label();
             lblOperacion = new Label();
+            btnPotencia = new Button();
             menuStrip2.SuspendLayout();
             pnlNumeros.SuspendLayout();
             pnlOperadores.SuspendLayout();
@@ -345,13 +346,14 @@
             // 
             // pnlOperadores
             // 
+            pnlOperadores.Controls.Add(btnPotencia);
             pnlOperadores.Controls.Add(btnDiv);
             pnlOperadores.Controls.Add(btnMult);
             pnlOperadores.Controls.Add(btnMinus);
             pnlOperadores.Controls.Add(btnPlus);
             pnlOperadores.Location = new Point(239, 97);
             pnlOperadores.Name = "pnlOperadores";
-            pnlOperadores.Size = new Size(105, 293);
+            pnlOperadores.Size = new Size(105, 382);
             pnlOperadores.TabIndex = 22;
             // 
             // pnlAcciones
@@ -375,7 +377,6 @@
             // 
             // lblOperacion
             // 
-            lblOperacion.AutoSize = false;
             lblOperacion.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOperacion.ForeColor = SystemColors.ControlDarkDark;
             lblOperacion.Location = new Point(0, 34);
@@ -383,6 +384,17 @@
             lblOperacion.Size = new Size(443, 22);
             lblOperacion.TabIndex = 27;
             lblOperacion.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // btnPotencia
+            // 
+            btnPotencia.Location = new Point(21, 283);
+            btnPotencia.Margin = new Padding(4);
+            btnPotencia.Name = "btnPotencia";
+            btnPotencia.Size = new Size(62, 62);
+            btnPotencia.TabIndex = 19;
+            btnPotencia.Text = "^";
+            btnPotencia.UseVisualStyleBackColor = true;
+            btnPotencia.Click += btnPotencia_Click;
             // 
             // principal
             // 
@@ -446,5 +458,6 @@
         private Button btnComa;
         private Button btnPlusMin;
         private Label lblOperacion;
+        private Button btnPotencia;
     }
 }

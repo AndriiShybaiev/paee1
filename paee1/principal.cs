@@ -9,7 +9,8 @@ namespace paee1
             Suma,
             Resta,
             Producto,
-            Division
+            Division,
+            Potencia
         }
 
         private double operando1, operando2, resultado;
@@ -179,6 +180,16 @@ namespace paee1
             ActualizarIndicadorOperacion();
         }
 
+        private void btnPotencia_Click(object sender, EventArgs e)
+        {
+            if (!TryObtenerValorDisplay(out operando1)) return;
+            operacion = Operacion.Potencia;
+            operacionPendiente = true;
+            pnlDisplay.Text = "0";
+            ActualizarEstadoBotonIgual();
+            ActualizarIndicadorOperacion();
+        }
+
         private void ActualizarIndicadorOperacion()
         {
             if (!operacionPendiente)
@@ -198,6 +209,7 @@ namespace paee1
                 Operacion.Resta => "−",
                 Operacion.Producto => "×",
                 Operacion.Division => "÷",
+                Operacion.Potencia => "^",
                 _ => string.Empty
             };
         }
@@ -226,6 +238,15 @@ namespace paee1
                     }
                     resultado = operando1 / operando2;
                     break;
+                case Operacion.Potencia:
+                    resultado = Math.Pow(operando1, operando2);
+                    break;
+            }
+
+            if (double.IsNaN(resultado))
+            {
+                MessageBox.Show("La potencia no está definida para estos valores.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (!double.IsFinite(resultado))
